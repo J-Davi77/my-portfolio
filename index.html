@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfólio</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+            crossorigin="anonymous"
+        />
+
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=dark_mode,light_mode"
+        />
+
+        <style>
+            .darkmode-btn {
+                position: relative;
+            }
+
+            .darkmode .darkmode-icon,
+            .lightmode-icon {
+                opacity: 0;
+            }
+
+            .darkmode .lightmode-icon {
+                opacity: 1;
+            }
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: opacity 0.2s;
+            }
+            .mode-tooltip {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, 40%);
+                opacity: 0;
+                pointer-events: none;
+                white-space: nowrap;
+                transition: all 0.1s ease-out;
+            }
+
+            .darkmode-btn:hover .mode-tooltip {
+                opacity: 1;
+                pointer-events: all;
+                transform: translate(-50%, 100%) scale(1);
+            }
+            .nav-item {
+                min-width: 120px;
+                text-align: center;
+                transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+            }
+
+            .nav-item a {
+                transition: transform 0.15s ease-out;
+            }
+
+            .nav-item:not(#skills-item):hover {
+                transform: scale(1.05) translateY(-0.15rem);
+                opacity: 0.8;
+            }
+
+            .nav-item a:active {
+                transform: scale(0.9);
+            }
+
+            .card {
+                opacity: 0;
+                transform: translateX(-5rem);
+                pointer-events: none;
+                transition: transform 0.3s, opacity 0.3s;
+            }
+            .card.show {
+                pointer-events: all;
+                opacity: 1;
+                transform: translateX(0);
+            }
+            .card:hover {
+                transform: translateY(-0.4rem) scale(1.02);
+                box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
+            }
+
+            .img-container img {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                transition: transform 0.25s;
+            }
+
+            .img-container {
+                border: 1px solid;
+            }
+
+            .img-container:hover img {
+                transform: scale(1.15);
+            }
+
+            #modal-overlay {
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.15s;
+            }
+
+            #modal-overlay.show-modal {
+                opacity: 1;
+                pointer-events: all;
+                backdrop-filter: blur(3px);
+            }
+
+            #modal-img {
+                width: clamp(250px, 90%, 1200px);
+                transition: transform 0.2s ease-out, opacity 0.15s ease-out;
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            .show-modal #modal-img {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            #skills-item {
+                position: relative;
+            }
+
+            #skills-container {
+                position: absolute;
+                top: 100%;
+                left: 0%;
+                z-index: 2;
+                opacity: 0;
+                border-radius: 10px;
+                pointer-events: none;
+                animation: none;
+                transition: opacity 0.15s ease-out;
+            }
+
+            #skills-item:hover #skills-container {
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            #skills-container a {
+                transition: opacity 0.15s ease-out, transform 0.1s ease-out;
+            }
+
+            #skills-container a:hover {
+                opacity: 0.6;
+            }
+
+            .social-medias a {
+                transition: all 0.2s;
+            }
+
+            .social-medias a:hover {
+                transform: scale(1.05);
+                background: lightgreen !important;
+            }
+
+            @media screen and (max-width: 768px) {
+                header.position-sticky {
+                    position: static !important;
+                    top: auto !important;
+                    flex-direction: column;
+                }
+                .nav {
+                    flex-direction: column;
+                }
+            }
+        </style>
+    </head>
+
+    <body data-bs-theme="dark" class="d-flex flex-column gap-1">
+        <header
+            class="d-flex bg-body flex-wrap align-items-center justify-content-around py-1 mb-4 border-bottom position-sticky top-0 z-1"
+        >
+            <span class="fs-1 m-4 fw-bold">Meu Portfólio</span>
+
+            <button
+                class="btn bg-dark-subtle me-2 darkmode-btn rounded-circle p-4"
+            >
+                <span class="material-symbols-outlined icon darkmode-icon"
+                    >dark_mode</span
+                >
+                <span class="material-symbols-outlined icon lightmode-icon"
+                    >light_mode</span
+                >
+                <span class="mode-tooltip fs-6 bg-dark-subtle rounded py-1 px-2"
+                    >Modo Escuro</span
+                >
+            </button>
+            <ul
+                class="nav nav-pills align-items-center justify-content-center gap-3 m-4"
+            >
+                <li class="nav-item">
+                    <a
+                        href="#bio"
+                        class="nav-link bg-success text-white"
+                        aria-current="page"
+                        >Biografia</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="#formacao"
+                        class="nav-link bg-success text-white"
+                        aria-current="page"
+                        >Formação</a
+                    >
+                </li>
+                <li class="nav-item" id="skills-item">
+                    <a
+                        href="#habilidades"
+                        class="nav-link bg-success text-white"
+                        aria-current="page"
+                        >Habilidades</a
+                    >
+                    <div id="skills-container" class="bg-dark-subtle">
+                        <a href="#linguagens" class="nav-link text-body w-100"
+                            >🚀 Linguagens</a
+                        >
+                        <a
+                            href="#frameworks"
+                            class="nav-link text-body border-top w-100"
+                            >⚡Frameworks/Bibliotecas</a
+                        >
+                        <a
+                            href="#tecnologias"
+                            class="nav-link text-body border-top w-100"
+                            >🛠️ Outras Tecnologias</a
+                        >
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="#projetos"
+                        class="nav-link bg-success text-white"
+                        aria-current="page"
+                        >Projetos</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="#contato"
+                        class="nav-link bg-success text-white"
+                        aria-current="page"
+                        >Contato</a
+                    >
+                </li>
+            </ul>
+        </header>
+
+        <!-- Biografai -->
+        <section
+            class="px-4 pt-5 my-5 text-center border-bottom bg-body-tertiary"
+            id="bio"
+        >
+            <h1 class="display-4 fw-bold text-body-emphasis mb-5">
+                Júlio Davi
+            </h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-5">
+                    Sou estudante da ETEC de Praia Grande, fazendo ensino médio
+                    integrado ao curso técnico Desenvolvimento de Sistemas. Sou
+                    apaixonado por tecnologia, meu objetivo é me tornar
+                    desenvolvedor full stack. Tenho estudado HTML, CSS,
+                    JavaScript e MySQL, e gosto de transformar ideias em
+                    projetos.
+                </p>
+            </div>
+        </section>
+
+        <!-- Formação -->
+        <section id="formacao" class="my-5 border-bottom border-1">
+            <div class="container-md mb-5">
+                <h2 class="mb-5 text-center fs-1">📚Formação Acadêmica</h2>
+
+                <div class="row justify-content-center gap-4">
+                    <div class="col-10 col-lg-4">
+                        <div class="card h-100 shadow bg-dark-subtle">
+                            <div class="card-body">
+                                <h3 class="card-title">🏫 Ensino Médio</h3>
+                                <p class="card-text">
+                                    ETEC de Praia Grande<br />2025 - atualmente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-lg-4">
+                        <div class="card h-100 shadow bg-dark-subtle">
+                            <div class="card-body">
+                                <h3 class="card-title fs-4">
+                                    👨‍💻 Técnico em Desenvolvimento de Sistemas
+                                </h3>
+                                <p class="card-text">
+                                    ETEC de Praia Grande<br />2025 - atualmente
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Habilidades -->
+        <section id="habilidades" class="my-5 border-bottom">
+            <h2 class="mb-5 text-center fs-1">💻 Habilidades</h2>
+
+            <div class="container-xl">
+                <h3 class="fs-2 mb-5 text-center" id="linguagens">
+                    🚀 Linguagens
+                </h3>
+
+                <div class="row gap-4 justify-content-center mb-5">
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                alt="HTML5"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">HTML5</h3>
+                            <p>
+                                Estrutura de páginas web, criação de elementos,
+                                links, formulários e semântica HTML5.
+                            </p>
+                            <p class="fs-4">⭐⭐⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 80%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Intermediário
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                                alt="CSS3"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">CSS3</h3>
+                            <p>
+                                Estilização de páginas, layouts responsivos,
+                                flexbox, grid, efeitos visuais e animações
+                                simples.
+                            </p>
+                            <p class="fs-4">⭐⭐⭐⭐</p>
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 65%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Intermediário
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                alt="JavaScript"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">JavaScript</h3>
+                            <p>
+                                Manipulação do DOM, conhecimentos básicos da
+                                programação(variáveis, loops, funções, arrays
+                                etc), eventos, armazenamento local e interação
+                                básica com APIs.
+                            </p>
+                            <p class="fs-4">⭐⭐⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 60%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Intermediário
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                alt="Python"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">Python</h3>
+                            <p>
+                                Lógica de programação, variáveis, listas,
+                                funções e criação de pequenos programas pequenos
+                                programas.
+                            </p>
+                            <p class="fs-4">⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 15%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+                                alt="Java"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">Java</h3>
+                            <p>
+                                Conceitos iniciais de orientação a objetos,
+                                classes e métodos, criação de pequenos programas
+                                estruturados.
+                            </p>
+                            <p class="fs-4">⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 8%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frameworks/Bibliotecas -->
+                <h3 class="mb-5 fs-2 text-center" id="frameworks">
+                    ⚡ Frameworks / Bibliotecas
+                </h3>
+
+                <div class="row gap-4 justify-content-center mb-5">
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                alt="React"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">React(JS)</h3>
+                            <p>
+                                Conceitos básicos de componentização, estados,
+                                Virtual DOM, renderização e criação de pequenas
+                                aplicações web.
+                            </p>
+                            <p class="fs-4">⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 15%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"
+                                alt="Bootstrap"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">Bootstrap(CSS)</h3>
+                            <p>
+                                Estilização rápida e responsiva de páginas web,
+                                uso de componentes prontos e classes
+                                utilitárias.
+                            </p>
+                            <p class="fs-4">⭐⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 35%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante > Intermediário
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+                                alt="Tailwind CSS"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">Tailwind(CSS)</h3>
+                            <p>
+                                Criação de layouts utilizando classes
+                                utilitárias, sem precisar escrever CSS na mão e
+                                com mais controle que as classes do Bootstrap.
+                            </p>
+                            <p class="fs-4">⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 10%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outras techs -->
+                <h3 class="mb-5 fs-2 text-center" id="tecnologias">
+                    🛠️ Outras tecnologias
+                </h3>
+
+                <div class="row gap-4 justify-content-center mb-5">
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+                                alt="Git"
+                                class="img-fluid mx-auto mb-3"
+                                width="60"
+                            />
+                            <h3 class="card-title fs-4">Git</h3>
+                            <p>
+                                Controle de versões de aplicações, comandos
+                                básicos(add, commit, push, pull) e colaboração
+                                com outros desenvolvedores.
+                            </p>
+                            <p class="fs-4">⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 22%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original-wordmark.svg"
+                                alt="NodeJS"
+                                class="img-fluid mx-auto mb-3"
+                                width="80"
+                            />
+                            <h3 class="card-title fs-4">Node.js</h3>
+                            <p>
+                                Estou iniciando no desenvolvimento back-end com
+                                Node.js, explorando criação de servidores, rotas
+                                e APIs.
+                            </p>
+                            <p class="fs-4">⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 15%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-5">
+                        <div
+                            class="card h-100 shadow-sm bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <img
+                                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+                                alt="MySQL"
+                                class="img-fluid mx-auto mb-3"
+                                width="80"
+                            />
+                            <h3 class="card-title fs-4">MySQL</h3>
+                            <p>
+                                Criação e manipulação de bancos de dados usando
+                                a linguagem SQL e o SGBD MySQL, conforme
+                                aprendido no curso técnico.
+                            </p>
+                            <p class="fs-4">⭐⭐</p>
+
+                            <div class="progress mb-2" style="height: 10px">
+                                <div
+                                    class="progress-bar bg-success"
+                                    role="progressbar"
+                                    style="width: 25%"
+                                ></div>
+                            </div>
+
+                            <p class="fs-5 text-secondary-emphasis">
+                                Iniciante
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section id="projetos" class="my-5 border-bottom border-1">
+            <h2 class="fs-1 text-center my-5">👨‍💻 Meus Projetos</h2>
+            <div class="container-xl">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-10 col-md-7">
+                        <div
+                            class="card h-100 shadow bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <div
+                                class="img-container overflow-hidden rounded-2"
+                            >
+                                <img
+                                    src="imgs/todolist.png"
+                                    alt="Imagem da to do list"
+                                    class="img-fluid mx-auto mb-3"
+                                />
+                            </div>
+                            <h3 class="card-title fs-4 my-3">
+                                Lista de tarefas com localStorage
+                            </h3>
+                            <p>
+                                Lista de tarefas que permite adicionar, marcar
+                                como concluída e remover tarefas, com os dados
+                                salvos automaticamente no armazenamento local.
+                                Aprendi sobre armazenamento local(localStorage)
+                                e manipulação mais avançada do DOM.
+                            </p>
+
+                            <div
+                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                            >
+                                <span class="badge rounded-pill bg-danger px-3"
+                                    >HTML5</span
+                                >
+                                <span class="badge rounded-pill bg-primary px-3"
+                                    >CSS3</span
+                                >
+                                <span class="badge rounded-pill bg-warning px-3"
+                                    >JS</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-5">
+                    <div class="col-10 col-md-7">
+                        <div
+                            class="card h-100 shadow bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <div
+                                class="img-container overflow-hidden rounded-2"
+                            >
+                                <img
+                                    src="imgs/calculadora.png"
+                                    alt="Imagem da calculadora"
+                                    class="img-fluid mx-auto mb-3"
+                                />
+                            </div>
+                            <h3 class="card-title fs-4 my-3">
+                                Calculadora Básica
+                            </h3>
+                            <p>
+                                Calculadora simples que permite as quatro
+                                operações básicas, potenciação e números
+                                decimais. Aprendi mais sobre manipulação do DOM
+                                e a lidar com erros.
+                            </p>
+                            <div
+                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                            >
+                                <span class="badge rounded-pill bg-danger px-3"
+                                    >HTML5</span
+                                >
+                                <span class="badge rounded-pill bg-primary px-3"
+                                    >CSS3</span
+                                >
+                                <span class="badge rounded-pill bg-warning px-3"
+                                    >JS</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mb-5">
+                    <div class="col-10 col-md-7">
+                        <div
+                            class="card h-100 shadow bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <div
+                                class="img-container overflow-hidden rounded-2"
+                            >
+                                <img
+                                    src="imgs/portfolio.png"
+                                    alt="Imagem do projeto do portfólio"
+                                    class="img-fluid mx-auto mb-3"
+                                />
+                            </div>
+                            <h3 class="card-title fs-4 my-3">
+                                Portfólio Simples
+                            </h3>
+                            <p>
+                                Portfólio feito no começo do ano. Simples, porém
+                                ajudou bastante na construção de minhas
+                                habilidades de HTML e CSS.
+                            </p>
+                            <div
+                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                            >
+                                <span class="badge rounded-pill bg-danger px-3"
+                                    >HTML5</span
+                                >
+                                <span class="badge rounded-pill bg-primary px-3"
+                                    >CSS3</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mb-5">
+                    <div class="col-10 col-md-7">
+                        <div
+                            class="card h-100 shadow bg-secondary-subtle border-0 text-center p-4"
+                        >
+                            <div
+                                class="img-container overflow-hidden rounded-2"
+                            >
+                                <img
+                                    src="imgs/cadastro-etec.png"
+                                    alt="Imagem da réplica do cadastro ETEC"
+                                    class="img-fluid mx-auto mb-3"
+                                />
+                            </div>
+                            <h3
+                                class="card-title fs-4 my-3"
+                                style="text-wrap: balance"
+                            >
+                                Réplica de Design do site do
+                                <a
+                                    href="https://idecan-vestibular.selecao.net.br/cadastro/?login=499.756.150-90&redir=%2Fpainel%F"
+                                    target="_blank"
+                                    >Cadastro da ETEC</a
+                                >
+                            </h3>
+                            <p>
+                                Réplica quase idêntica do site do Cadastro da
+                                ETEC. Aprendi controle de layouts complexos,
+                                tipografia, responsividade e conceitos como
+                                flexbox e grid.
+                            </p>
+                            <div
+                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                            >
+                                <span class="badge rounded-pill bg-danger px-3"
+                                    >HTML5</span
+                                >
+                                <span class="badge rounded-pill bg-primary px-3"
+                                    >CSS3</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal das imagens dos projetos -->
+        <div
+            class="d-flex align-items-center justify-content-center w-100 h-100 position-fixed bg-black bg-opacity-25 z-3"
+            id="modal-overlay"
+        >
+            <img
+                src=""
+                alt=""
+                id="modal-img"
+                class="img-fluid rounded-4"
+            />
+        </div>
+
+        <!-- Rodapé -->
+        <footer
+            id="contato"
+            class="text-center d-flex align-items-center flex-column"
+        >
+            <p class="fs-3">
+                Email:
+                <a
+                    href="mailto:julio1704davi@gmail.com"
+                    class="text-decoration-none"
+                >
+                    julio1704davi@gmail.com</a
+                >
+            </p>
+            <div
+                class="social-medias rounded-pill d-flex align-items-center gap-4"
+            >
+                <a
+                    href="https://github.com/J-Davi77"
+                    class="rounded-circle p-1 bg-body-tertiary"
+                    target="_blank"
+                    title="Github"
+                >
+                    <img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+                        class="img-fluid m-2"
+                        alt="Github"
+                        width="50"
+                    />
+                </a>
+                <a
+                    href="https://www.instagram.com/julio_davii_"
+                    target="_blank"
+                    class="rounded-circle p-1 bg-body-tertiary"
+                    title="Instagram"
+                >
+                    <img
+                        src="imgs/instagram.svg"
+                        class="img-fluid m-2"
+                        width="50"
+                        alt="Instagram"
+                    />
+                </a>
+            </div>
+            <p class="my-5 text-success">
+                &copy; 2025 Júlio Davi — Todos os direitos reservados
+            </p>
+        </footer>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+            integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+            crossorigin="anonymous"
+        ></script>
+
+        <script>
+
+            // Modal das imagens dos projetos
+            const modalOverlay = document.querySelector('#modal-overlay');
+            const modalImg = document.querySelector('#modal-img');
+            const projectImgs = document.querySelectorAll('#projetos .img-container img');
+            function openModal(img) {
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modalOverlay.classList.add('show-modal');
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('show-modal');
+            }
+
+            // Animação de scroll
+            const cards = document.querySelectorAll(".card");
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("show");
+                        } else {
+                            entry.target.classList.remove("show");
+                        }
+                    });
+                },
+                {
+                    threshold: 0.5
+                }
+            );
+
+            cards.forEach((card) => observer.observe(card));
+            
+
+            // Modo Escuro / Claro
+            const darkmodeBtn = document.querySelector(".darkmode-btn");
+            const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+            );
+            let isDark = prefersDark.matches;
+            updateMode();
+
+            function updateMode() {
+                const tooltip = document.querySelector(".mode-tooltip");
+                if (isDark) {
+                    document.body.setAttribute("data-bs-theme", "dark");
+                    darkmodeBtn.classList.add("darkmode");
+                    tooltip.textContent = "Mudar para Modo Claro";
+                    isDark = false;
+                } else {
+                    document.body.setAttribute("data-bs-theme", "light");
+                    darkmodeBtn.classList.remove("darkmode");
+                    tooltip.textContent = "Mudar para Modo Escuro";
+                    isDark = true;
+                }
+            }
+
+            // EventListeners
+            projectImgs.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    openModal(e.currentTarget);
+                })
+            });
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target = modalOverlay) closeModal();
+            })
+
+            darkmodeBtn.addEventListener("click", updateMode);
+        </script>
+    </body>
+</html>
