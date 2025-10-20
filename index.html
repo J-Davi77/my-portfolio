@@ -116,15 +116,15 @@
             }
 
             #modal-img {
-                width: clamp(250px, 90%, 1200px);
-                transition: transform 0.2s ease-out, opacity 0.15s ease-out;
+                width: clamp(250px, 95%, 1200px);
+                transition: transform 0.25s ease-out, opacity 0.2s ease-out;
                 opacity: 0;
-                transform: scale(0);
+                transform: translateY(5rem);
             }
 
             .show-modal #modal-img {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
 
             #skills-item {
@@ -157,12 +157,12 @@
             }
 
             .social-medias a {
-                transition: all 0.2s;
+                transition: background 0.2s, transform 0.2s;
             }
-
+            
             .social-medias a:hover {
+                background: rgb(150, 255, 150) !important;
                 transform: scale(1.05);
-                background: lightgreen !important;
             }
 
             @media screen and (max-width: 768px) {
@@ -713,15 +713,15 @@
                             </p>
 
                             <div
-                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                                class="container-sm d-flex justify-content-center align-items-center gap-3"
                             >
-                                <span class="badge rounded-pill bg-danger px-3"
+                                <span class="badge rounded-pill bg-danger px-3 py-2"
                                     >HTML5</span
                                 >
-                                <span class="badge rounded-pill bg-primary px-3"
+                                <span class="badge rounded-pill bg-primary px-3 py-2"
                                     >CSS3</span
                                 >
-                                <span class="badge rounded-pill bg-warning px-3"
+                                <span class="badge rounded-pill bg-warning px-4 py-2"
                                     >JS</span
                                 >
                             </div>
@@ -753,15 +753,15 @@
                                 e a lidar com erros.
                             </p>
                             <div
-                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                                class="container-sm d-flex justify-content-center align-items-center gap-3"
                             >
-                                <span class="badge rounded-pill bg-danger px-3"
+                                <span class="badge rounded-pill bg-danger px-3 py-2"
                                     >HTML5</span
                                 >
-                                <span class="badge rounded-pill bg-primary px-3"
+                                <span class="badge rounded-pill bg-primary px-3 py-2"
                                     >CSS3</span
                                 >
-                                <span class="badge rounded-pill bg-warning px-3"
+                                <span class="badge rounded-pill bg-warning px-4 py-2"
                                     >JS</span
                                 >
                             </div>
@@ -791,12 +791,12 @@
                                 habilidades de HTML e CSS.
                             </p>
                             <div
-                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                                class="container-sm d-flex justify-content-center align-items-center gap-3"
                             >
-                                <span class="badge rounded-pill bg-danger px-3"
+                                <span class="badge rounded-pill bg-danger px-3 py-2"
                                     >HTML5</span
                                 >
-                                <span class="badge rounded-pill bg-primary px-3"
+                                <span class="badge rounded-pill bg-primary px-3 py-2"
                                     >CSS3</span
                                 >
                             </div>
@@ -836,12 +836,12 @@
                                 flexbox e grid.
                             </p>
                             <div
-                                class="container-sm d-flex justify-content-center flex-grow-1 gap-3"
+                                class="container-sm d-flex justify-content-center gap-3"
                             >
-                                <span class="badge rounded-pill bg-danger px-3"
+                                <span class="badge rounded-pill d-flex justify-content-center align-items-center bg-danger px-3 py-2"
                                     >HTML5</span
                                 >
-                                <span class="badge rounded-pill bg-primary px-3"
+                                <span class="badge rounded-pill d-flex justify-content-center align-items-center bg-primary px-3 py-2"
                                     >CSS3</span
                                 >
                             </div>
@@ -883,7 +883,7 @@
             >
                 <a
                     href="https://github.com/J-Davi77"
-                    class="rounded-circle p-1 bg-body-tertiary"
+                    class="rounded-circle p-1 bg-success"
                     target="_blank"
                     title="Github"
                 >
@@ -897,7 +897,7 @@
                 <a
                     href="https://www.instagram.com/julio_davii_"
                     target="_blank"
-                    class="rounded-circle p-1 bg-body-tertiary"
+                    class="rounded-circle p-1 bg-success"
                     title="Instagram"
                 >
                     <img
