@@ -191,11 +191,24 @@ p,
     transition: background 0.2s, transform 0.2s;
 }
 
+.social-medias a img {
+    transition: filter 0.2s;
+    filter: invert(1);
+}
+
+
 .social-medias a:hover {
     background: rgb(150, 255, 150) !important;
     transform: scale(1.05);
 }
 
+.social-medias a:hover img{
+    filter: invert(0);
+}
+
+.social-medias a:active {
+    transform: scale(0.9)
+}
 @media screen and (max-width: 768px) {
     header.position-sticky {
         position: static !important;
