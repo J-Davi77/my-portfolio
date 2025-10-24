@@ -61,7 +61,7 @@ projectImgs.forEach((img) => {
 });
 
 modalOverlay.addEventListener("click", (e) => {
-    if ((e.target = modalOverlay)) closeModal();
+    if ((e.target === modalOverlay)) closeModal();
 });
 
 darkmodeBtn.addEventListener("click", updateMode);
