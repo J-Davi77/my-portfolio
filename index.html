@@ -30,6 +30,7 @@
 
         <link rel="stylesheet" href="style.css" />
         <script src="script.js" defer></script>
+
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -47,26 +48,47 @@
 
     <body data-bs-theme="dark" class="d-flex flex-column gap-1">
         <header
-            class="d-flex bg-body flex-wrap align-items-center justify-content-around mb-4 border-bottom position-sticky top-0 z-1"
+            class="d-flex bg-body shadow-sm flex-column flex-sm-row align-items-center justify-content-around mb-4 border-bottom position-sticky top-0 z-1"
         >
-            <h2 class="fs-1 m-4 fw-bold">Meu Portfólio</h2>
+            <div class="d-flex justify-content-center align-items-center gap-5">
+                <h2 class="fs-1 m-1 m-lg-3 m-md-2fw-bold">Meu Portfólio</h2>
 
-            <button
-                class="btn bg-dark-subtle me-2 darkmode-btn rounded-circle p-4"
-            >
-                <span class="material-symbols-outlined icon darkmode-icon"
-                    >dark_mode</span
+                <button
+                    class="d-flex align-items-center justify-content-center btn border border-2 rounded-3 d-none m-2"
+                    id="menu-btn"
                 >
-                <span class="material-symbols-outlined icon lightmode-icon"
-                    >light_mode</span
-                >
-                <span class="mode-tooltip fs-6 bg-dark-subtle rounded py-1 px-2"
-                    >Modo Escuro</span
-                >
-            </button>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="30"
+                        height="30"
+                        fill="currentColor"
+                        class="bi bi-list"
+                        viewBox="0 0 16 16"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                        />
+                    </svg>
+                </button>
+            </div>
+
             <ul
                 class="nav nav-pills align-items-center justify-content-center gap-3 m-4"
             >
+                <button
+                    class="btn bg-dark-subtle darkmode-btn rounded-circle p-4"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="<span class='fw-semibold'>Mudar a cor tema</span>"
+                >
+                    <span class="material-symbols-outlined icon darkmode-icon"
+                        >dark_mode</span
+                    >
+                    <span class="material-symbols-outlined icon lightmode-icon"
+                        >light_mode</span
+                    >
+                </button>
                 <li class="nav-item">
                     <a
                         href="#bio"
@@ -127,7 +149,7 @@
 
         <!-- Biografia -->
         <section
-            class="px-4 pt-5 my-5 text-center border-bottom bg-body-tertiary"
+            class="px-4 pt-5 my-5 text-center border-bottom sha'dow-sm bg-body-tertiary"
             id="bio"
         >
             <h1
@@ -786,6 +808,9 @@
                     href="https://github.com/J-Davi77"
                     class="rounded-circle p-1 bg-success"
                     target="_blank"
+                    data-bs-toggle="tooltip"
+                    datab-bs-placement="top"
+                    title="<span class='fw-semibold'>Github</span>"
                     aria-label="Github"
                 >
                     <img
@@ -801,6 +826,9 @@
                     target="_blank"
                     class="rounded-circle p-1 bg-success"
                     aria-label="Instagram"
+                    data-bs-toggle="tooltip"
+                    datab-bs-placement="top"
+                    title="<span class='fw-semibold'>Instagram</span>"
                 >
                     <img
                         src="imgs/instagram.svg"
@@ -815,6 +843,9 @@
                     target="_blank"
                     class="rounded-circle p-1 bg-success"
                     aria-label="Meu Email"
+                    data-bs-toggle="tooltip"
+                    datab-bs-placement="top"
+                    title="<span class='fw-semibold'>Meu Email</span>"
                 >
                     <img
                         src="imgs/mail.svg"
