@@ -1,5 +1,5 @@
 // Ativação dos tooltips
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const tooltipTriggerList = document.querySelectorAll(
         '[data-bs-toggle="tooltip"]'
     );
@@ -29,12 +29,12 @@ function toggleMenu() {
                         fill="currentColor"
                         class="bi bi-list"
                         viewBox="0 0 16 16"
-                    >
+                        >
                         <path
-                            fill-rule="evenodd"
-                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                        fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
                         />
-                    </svg>`;
+                        </svg>`;
     }
 }
 menuBtn.addEventListener("click", toggleMenu);
@@ -62,6 +62,7 @@ projectImgs.forEach((img) => {
 modalOverlay.addEventListener("click", (e) => {
     if (e.target === modalOverlay) closeModal();
 });
+
 // Animação de scroll
 const cards = document.querySelectorAll(".card");
 
@@ -84,19 +85,29 @@ cards.forEach((card) => observer.observe(card));
 
 // Modo Escuro / Claro
 const darkmodeBtn = document.querySelector(".darkmode-btn");
-const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-let isDark = prefersDark.matches;
-updateMode();
 
-function updateMode() {
-    if (isDark) {
+function setInitialTheme() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (prefersDark.matches) {
         document.body.setAttribute("data-bs-theme", "dark");
-        darkmodeBtn.classList.add("darkmode");
-        isDark = false;
+        darkmodeBtn.classList.add('darkmode')
     } else {
         document.body.setAttribute("data-bs-theme", "light");
+        darkmodeBtn.classList.remove('darkmode')
+    }
+}
+
+setInitialTheme();
+
+function updateMode() {
+    const isDark = document.body.getAttribute("data-bs-theme") === "dark";
+    if (isDark) {
+        document.body.setAttribute("data-bs-theme", "light");
         darkmodeBtn.classList.remove("darkmode");
-        isDark = true;
+    } else {
+        document.body.setAttribute("data-bs-theme", "dark");
+        darkmodeBtn.classList.add("darkmode");
     }
 }
 

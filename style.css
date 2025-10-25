@@ -50,6 +50,11 @@ p,
 
 .darkmode-btn {
     position: relative;
+    transition: opacity 0.2s
+}
+
+.darkmode-btn:hover {
+    opacity: 0.8;
 }
 
 .darkmode .darkmode-icon,
@@ -66,22 +71,6 @@ p,
     left: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.2s;
-}
-.mode-tooltip {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 40%);
-    opacity: 0;
-    pointer-events: none;
-    white-space: nowrap;
-    transition: all 0.1s ease-in;
-}
-
-.darkmode-btn:hover .mode-tooltip {
-    opacity: 1;
-    pointer-events: all;
-    transform: translate(-50%, 100%) scale(1);
 }
 .nav-item {
     min-width: 120px;
@@ -219,7 +208,7 @@ p,
     opacity: 0.8;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
     #menu-btn {
         display: block !important;
     }
