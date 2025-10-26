@@ -132,10 +132,6 @@ p,
     transition: transform 0.25s;
 }
 
-.img-container {
-    border: 1px solid;
-}
-
 .img-container:hover img {
     transform: scale(1.15);
 }
