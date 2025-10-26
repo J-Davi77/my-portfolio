@@ -12,6 +12,20 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 });
 
+// Header retraível
+const header = document.querySelector("header");
+let currentScrollY = window.scrollY;
+function toggleHeader() {
+    if (window.scrollY > currentScrollY) {
+        header.style.transform = "translateY(-100%)";
+    } else {
+        header.style.transform = "translateY(0)";
+    }
+    currentScrollY = window.scrollY;
+}
+
+window.addEventListener('scroll', toggleHeader);
+
 // Glow nos cards
 const cards = document.querySelectorAll(".card");
 function glowCard(e, card) {
@@ -23,21 +37,22 @@ function glowCard(e, card) {
         glowDiv.style.left = `${x}px`;
         glowDiv.style.top = `${y}px`;
         glowDiv.style.opacity = 1;
+        glowDiv.style.transform = "translate(-50%, -50%) scale(1)";
     }
 }
 
 cards.forEach((card) => {
-    card.addEventListener("mousemove",(e) => glowCard(e ,card));
+    card.addEventListener("mousemove", (e) => glowCard(e, card));
 
     card.addEventListener("mouseleave", () => {
         const glowDiv = card.querySelector(".glow");
+        glowDiv.style.transform = "translate(-50%, -50%) scale(0)";
         if (glowDiv) glowDiv.style.opacity = 0;
     });
 });
 
 // Menu para telas menores
 const menuBtn = document.querySelector("#menu-btn");
-const header = document.querySelector("header");
 function toggleMenu() {
     header.classList.toggle("show-menu");
 }

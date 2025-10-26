@@ -48,6 +48,10 @@ p,
     font-weight: 400;
 }
 
+header {
+    transition: 0.4s transform;
+}
+
 .darkmode-btn {
     position: relative;
     transition: opacity 0.2s;
@@ -121,8 +125,8 @@ p,
     left: 0;
     pointer-events: none;
     opacity: 0;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s, top 0.1s, left 0.1s;
+    transform: translate(-50%, -50%) scale(0);
+    transition: opacity 0.2s, top 0.1s, left 0.1s, transform 0.8s;
 }
 
 .img-container img {
@@ -228,7 +232,7 @@ p,
     header {
         flex-wrap: nowrap !important;
         overflow: hidden;
-        transition: max-height 0.5s ease-in;
+        transition: max-height 0.5s ease-in, transform 0.4s;
         padding: 0.6rem !important;
         max-height: 80px;
     }
