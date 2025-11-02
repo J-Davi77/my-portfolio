@@ -31,7 +31,7 @@ h3,
 
 h1 {
     animation: fade 0.8s forwards;
-    text-wrap: balance;
+    white-space: nowrap;
 }
 
 #my-name {
@@ -46,6 +46,14 @@ p,
 .card-text {
     font-family: "Inter", sans-serif;
     font-weight: 400;
+}
+
+p, .card-text {
+    max-width: 90%;
+    text-align: justify;
+    text-align-last: left;
+    margin-right: auto !important;
+    margin-left: auto !important;
 }
 
 header {
@@ -126,7 +134,7 @@ header {
     pointer-events: none;
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
-    transition: opacity 0.2s, top 0.1s, left 0.1s, transform 0.8s;
+    transition: opacity 0.2s, top 0.1s, left 0.1s, transform 0.9s;
 }
 
 .img-container img {

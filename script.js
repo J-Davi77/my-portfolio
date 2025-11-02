@@ -54,7 +54,9 @@ cards.forEach((card) => {
 // Menu para telas menores
 const menuBtn = document.querySelector("#menu-btn");
 function toggleMenu() {
+    window.removeEventListener('scroll', toggleHeader);
     header.classList.toggle("show-menu");
+    setTimeout(() => window.addEventListener('scroll', toggleHeader), 400);
 }
 menuBtn.addEventListener("click", toggleMenu);
 
